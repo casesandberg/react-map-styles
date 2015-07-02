@@ -1,0 +1,13 @@
+{
+  "name": "react-map-styles",
+  "version": "0.2.0",
+  "main": "lib/react-map-styles.js",
+  "devDependencies": {
+    "chai": "^2.2.0",
+    "coffee-script": "^1.9.1",
+    "gulp": "^3.8.11",
+    "gulp-coffee": "^2.3.1",
+    "gulp-concat": "^2.5.2",
+    "gulp-mocha": "^2.0.1"
+  }
+}
