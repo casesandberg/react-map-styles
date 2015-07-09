@@ -4,7 +4,7 @@
 
 module.exports = (file) ->
 
-  if this.cachable
+  if this && this.cacheable
     this.cacheable()
   
   while isProp = /(is="(.+?)")/.exec(file)
