@@ -4,6 +4,9 @@
 
 module.exports = (file) ->
 
+  if this && this.cacheable
+    this.cacheable()
+  
   while isProp = /(is="(.+?)")/.exec(file)
     # The is block that should be replaced. Looks like: `is="message"`
     prop = isProp[1]
