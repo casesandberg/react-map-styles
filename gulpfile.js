@@ -6,16 +6,15 @@ require('coffee-script/register');
 
 
 
-gulp.task('test', function(){
+gulp.task('test', ['bundle'], function(){
   return gulp.src('./test/**/*.coffee')
              .pipe(mocha());
 });
 
-gulp.task('bundle', function(done) {
-  gulp.src('./src/**/*.coffee')
+gulp.task('bundle', function() {
+  return gulp.src('./src/**/*.coffee')
     .pipe(coffee({bare: true}))
     .pipe(gulp.dest('lib'));
-  done();
 });
 
 gulp.task('watch', function() {
