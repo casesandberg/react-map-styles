@@ -12,19 +12,25 @@ describe 'CSS Context Loader', ->
     expect(context(before)).to.equal(after)
 
 
+  ['"', "'"].forEach((quote) ->
 
-  it 'should translate `is` to inline style on html elements', ->
+    quoteType = if quote == "'" then 'Single' else 'Double'
 
-    before = '<div is="conversationColumn"></div>'
-    after = '<div style={ this.styles().conversationColumn }></div>'
+    describe "#{quoteType}-quoted attributes", ->
 
-    expect(context(before)).to.equal(after)
+        it 'should translate `is` to inline style on html elements', ->
+
+          before = "<div is=#{quote}conversationColumn#{quote}></div>"
+          after = '<div style={ this.styles().conversationColumn }></div>'
+
+          expect(context(before)).to.equal(after)
 
 
 
-  it 'should translate `is` to spread on custom components', ->
+        it 'should translate `is` to spread on custom components', ->
 
-    before = '<Custom is="ConversationColumn">'
-    after = '<Custom {...this.styles().ConversationColumn}>'
+          before = "<Custom is=#{quote}ConversationColumn#{quote}>"
+          after = '<Custom {...this.styles().ConversationColumn}>'
 
-    expect(context(before)).to.equal(after)
+          expect(context(before)).to.equal(after)
+  )
