@@ -3,11 +3,15 @@
   "version": "0.2.0",
   "main": "lib/react-map-styles.js",
   "devDependencies": {
+    "babel": "^5.8.23",
+    "babel-core": "^5.8.24",
     "chai": "^2.2.0",
     "coffee-script": "^1.9.1",
     "gulp": "^3.8.11",
+    "gulp-babel": "^5.2.1",
     "gulp-coffee": "^2.3.1",
     "gulp-concat": "^2.5.2",
-    "gulp-mocha": "^2.0.1"
+    "gulp-mocha": "^2.0.1",
+    "gulp-uglify": "^1.4.1"
   }
 }

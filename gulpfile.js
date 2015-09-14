@@ -1,24 +1,30 @@
-var gulp = require('gulp');
-var mocha = require('gulp-mocha');
-var coffee = require('gulp-coffee');
-var concat = require('gulp-concat');
+'use strict';
+
+require('babel-core/register');
+
 require('coffee-script/register');
 
+var gulp = require('gulp');
+var mocha = require('gulp-mocha');
+var concat = require('gulp-concat');
 
+var babel = require('gulp-babel');
+var uglify = require('gulp-uglify');
 
-gulp.task('test', ['bundle'], function(){
-  return gulp.src('./test/**/*.coffee')
-             .pipe(mocha());
+gulp.task('test-once', ['lib'], function() {
+  return gulp.src('./test/**/*.js')
+    .pipe(mocha({ compilers: { js: babel } }));
 });
 
-gulp.task('bundle', function() {
-  return gulp.src('./src/**/*.coffee')
-    .pipe(coffee({bare: true}))
+gulp.task('test', function() {
+  gulp.watch(['./src/**/*.js', './test/**/*.js'], ['lib', 'test-once']);
+});
+
+gulp.task('lib', function() {
+  return gulp.src('./src/**/*.js')
+    .pipe(babel())
+    .pipe(uglify())
     .pipe(gulp.dest('lib'));
 });
 
-gulp.task('watch', function() {
-  gulp.watch([ '**/*.coffee' ], [ 'bundle', 'test' ]);
-});
-
-gulp.task('default', ['watch']);
+gulp.task('default', ['test']);
