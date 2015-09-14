@@ -1,6 +1,6 @@
 {
   "name": "react-map-styles",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "main": "lib/react-map-styles.js",
   "devDependencies": {
     "babel": "^5.8.23",
